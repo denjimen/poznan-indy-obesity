@@ -1,0 +1,56 @@
+PoznanIndyObesity/
+├── README.md                    ← Your GitHub landing page
+├── data/                       ← Raw CSV/JSON downloads
+│   ├── eurostat_pl612.csv
+│   ├── cdc_places_indiana.csv
+│   ├── gus_poznan_health.csv
+│   └── strava_indianapolis/    ← Pending approval
+├── notebooks/                  ← Analysis pipeline
+│   ├── 01_data_collection.ipynb
+│   ├── 02_data_cleaning.ipynb
+│   ├── 03_analysis.ipynb
+│   └── 04_dashboard.ipynb
+├── dashboard/                  ← Final Streamlit app
+│   └── app.py
+├── output/                     ← Charts + final tables
+└── METHODOLOGY.md             ← Detailed methods
+
+Notebook Pipeline
+01_data_collection.ipynb
+1. Eurostat PL612 obesity rates (2014-2023)
+2. CDC PLACES Indiana FIPS counties (18097,18057,etc.)
+3. ACS Census bike commuting data
+4. GUS Poznań cycling statistics
+5. Save raw CSVs to data/ folder
+
+02_data_cleaning.ipynb
+1. Harmonize years (2014-2023)
+2. Standardize obesity % (BMI≥30 adults)
+3. Aggregate Poznań city+county → metro
+4. Weight Indiana 6-county cluster by population
+5. Merge datasets → master_df.csv
+
+03_analysis.ipynb
+1. Descriptive statistics (means, trends)
+2. T-test: Poznań vs Indy 2023 obesity
+3. Correlation: bike % vs obesity rates
+4. Linear regression slopes (trend acceleration)
+5. Save results → output/ folder
+
+04_dashboard.ipynb
+1. Plotly dual-line chart (obesity trends)
+2. Metro comparison bar charts
+3. Bike commute vs obesity scatterplot
+4. Correlation heatmap
+5. Export to Streamlit app
+
+Key Metrics by Region
+Poznań Metro (PL612 + Poznań County):
+├── Obesity: ~20% (stable)
+├── Bike commute: 7-9%
+└── Area: ~1,400 km²
+
+Indianapolis Metro (6 counties):
+├── Obesity: ~38% (rising)
+├── Bike commute: ~0.4%
+└── Area: ~5,676 km²
