@@ -1,30 +1,38 @@
-# Comparing Obesity Rates: Poznań Metropolitan Area vs Indianapolis Metropolitan Area
+# Poznań vs Indianapolis: Obesity & Cycling Analysis
 
-**Comparative obesity analysis: Poznań Metro (PL612) vs Indianapolis Metro (6-county FIPS). Poznań 20% vs US 38% obesity despite similar metro sizes. Testing if Poznań's 8% bike commuting vs Indianapolis' 0.4% explains the gap using Strava Metro edge counts + CDC PLACES + Eurostat data.**
+**Comparative study: Why does Poznań have 20% obesity vs Indianapolis' 38%?**
 
-## Project Overview
-Cross-Atlantic health analysis comparing adult obesity trends (2014-2023) between:
-- Poznań Metro (city + county, ~1,400 km², NUTS-3: PL612)
-- Indianapolis Metro (6-county cluster, ~5,676 km², FIPS: 18097,18057,etc.)
+Poznań Metro (PL612, ~1.4M people) vs Indianapolis Metro (6-county, ~2.1M). 
+Hypothesis: Poznań's 8% bike commuting explains the gap vs US 0.4%.
 
-Hypothesis: Poznań's cycling culture (8% bike commute) explains 18-point obesity gap vs US (0.4% bike).
+## Progress
 
-## Data Sources
+| Notebook | Status | Description |
+|----------|--------|-------------|
+| `01_data_collection.ipynb` | Complete | Eurostat PL612 + CDC PLACES APIs connected |
+| `02_data_cleaning.ipynb` | Next | Full county aggregation + Polish voivodeships |
+| `03_analysis.ipynb` | Planned | Bike commute vs obesity correlations |
+| `04_dashboard.ipynb` | Planned | Plotly interactive trends + Strava integration |
 
-EU/Poland:
-- Eurostat sdg_02_10 (NUTS-3 PL612 obesity rates)
-- GUS Local Data Bank (Poznań city/county)
-- NFZ health statistics
+## Live Results (Notebook 1)
+[View executed notebook](notebooks/01_data_collection.ipynb)
+**5 green cells: Eurostat + CDC APIs live**
 
-USA/Indianapolis:
-- CDC PLACES 2023 (FIPS county obesity)
-- ACS Census (bike commuting)
-- Strava Metro (bike edge counts, pending access)
-
-## Analysis Pipeline
-1. Data harmonization → 2014-2023 adult obesity % (BMI≥30)
-2. Metro aggregation → Poznań city+county vs 6-county IN cluster  
-3. Correlation analysis → bike commute % vs obesity rates
-4. Plotly dashboard → interactive trends + scatterplots
+## Geography
+EU/Poland: PL612 (Wielkopolskie) → Poznań city + county
+US/Indiana: 6 counties → Marion + 5 surrounding (FIPS: 18097,18057,...)
 
 ## Expected Insights
+- Poznań: 8% bike commute → 20% obesity (Eurostat)
+- Indianapolis: 0.4% bike commute → 38% obesity (CDC)
+- Strava Metro: Poznań 10x higher bike edge counts/km²?
+
+## Tech Stack
+Eurostat API + CDC PLACES + Plotly + GitHub Actions
+Google BigQuery → PostgreSQL → Streamlit dashboard (Q1 2026)
+
+## Next: Notebook 2
+Full county datasets + Polish GUS data → obesity heatmaps
+
+---
+Built by denjimen | Poznań, Poland → Indianapolis, IN
